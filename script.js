@@ -1,12 +1,22 @@
 const body = document.body;
 const disDiv = document.querySelector(".disDiv")
-disDiv.style = "border: 0.25px solid black"
-const divContainer = [];
 
-const kutuGenislik = 16;
-const kutuUzunluk = 16;
+const kareSayisi = document.querySelector("#kareSayisi")
+const btnOlustur = document.querySelector("#olustur")
+let sayi = 16;
 
-function OnAltiliCocukDiv (){
+let sayiKutu = 1;
+let sayiContainer = 1;
+
+let kutuGenislik = sayi;
+let kutuUzunluk = sayi;
+
+
+function kutuOlusturucu (){
+    disDiv.innerHTML = "";
+    sayiKutu = 1;
+    sayiContainer = 1;
+    let divContainer = [];
     for(let i =0;i<kutuUzunluk;i++){      
         divContainer.push(document.createElement("div"))
         divContainer[i].classList.add(`container${i + 1}`);
@@ -16,19 +26,36 @@ function OnAltiliCocukDiv (){
         for(let a = 0; a < kutuGenislik;a++){
             let child = document.createElement("div");
             child.classList.add(`kutu${a+ 1}`)
-            child.style = "flex:1; aspect-ratio: 1;"// Kareli Gözükmesini İstersen: border: 0.25px solid black;
+            child.style = "flex:1; aspect-ratio: 1; border: 0.25px solid black"
             divContainer[i].appendChild(child)
         }
     }
 }
-OnAltiliCocukDiv();
+kutuOlusturucu();
 
-body.addEventListener("pointermove", function (a) {    
+
+
+
+btnOlustur.addEventListener("click", function (){
+    console.log(kareSayisi.value);
+    if (kareSayisi.value > 100){
+        uyari.textContent = "Lütfen Daha Küçük Rakam Girin! Sınır:100"
+    }else{
+        sayi = parseInt(kareSayisi.value)
+        kutuGenislik = sayi;
+        kutuUzunluk = sayi;
+        
+        kutuOlusturucu();
+    }
+  
+})
+
+
+
+disDiv.addEventListener("pointermove", function (a) {    
     a.target.style.backgroundColor = "red"
 })
 
-let sayiKutu = 2;
-let sayiContainer = 15;
 let uyari = document.createElement("h3")
 body.appendChild(uyari)
 let gecersizBasis = 1;
