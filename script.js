@@ -3,8 +3,8 @@ const disDiv = document.querySelector(".disDiv")
 disDiv.style = "border: 0.25px solid black"
 const divContainer = [];
 
-const kutuGenislik = 500;
-const kutuUzunluk = 500;
+const kutuGenislik = 16;
+const kutuUzunluk = 16;
 
 function OnAltiliCocukDiv (){
     for(let i =0;i<kutuUzunluk;i++){      
