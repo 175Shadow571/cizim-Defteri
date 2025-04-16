@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Çizim Defteri</title>
+
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div style="margin: 24px; text-align: center;">
-        <input id="kareSayisi" type="number">
-        <button id="olustur">Oluştur</button>
-
+    <div class="girdi" >
+        <button id="olustur">Boyut Landır</button>
+        <div class="container"></div>
     </div>
+
+
+
     <div class="disDiv""></div>
     
+
+
+    <div class="btn">
+        <button id="btnSiyah" class="btnRenk" style="background-color: black; color: #ffff;">Siyah</button>
+        <button id="btnKirmizi" class="btnRenk" style="background-color: red;">Kırmızı</button>
+        <button id="btnMavi" class="btnRenk" style="background-color: blue;">Mavi</button>
+        <button id="btnYesil" class="btnRenk" style="background-color: green;">Yeşil</button>
+        <button id="btnSilgi" class="btnRenk">Silgi</button>
+    </div>
+
     <script src="./script.js"></script>
 </body>
 </html>

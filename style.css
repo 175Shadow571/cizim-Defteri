@@ -1,0 +1,47 @@
+
+.girdi {
+    display: flex;
+    padding: 16px;
+    background-color: aquamarine;
+    margin-bottom: 8px;
+    border: 0.50px solid rgb(87, 102, 240);
+    border-radius: 10px;
+}
+.girdi button{
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    border: 0;
+    background-color: rgb(255, 180, 82);
+    font-weight: 900;
+}
+.btn{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 32px;
+    background-color: aquamarine;
+    margin-top:8px;
+    border: 0.50px solid rgb(87, 102, 240);
+    border-radius: 10px;
+}
+.btn button{
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    font-size: 18px;
+    font-weight: 900;
+    border: 0;
+}
+
+
+.animasyon{
+    opacity: 0;
+    transform: translateY(-200px);
+    transition: all 0.4s ease-out;
+    margin: 4px 20px;
+    font-style: italic;
+}
+.animasyon.animasyonGirdi{
+    transform: translateY(0);
+    opacity: 1;
+}

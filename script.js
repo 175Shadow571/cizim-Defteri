@@ -1,12 +1,28 @@
 const body = document.body;
 const disDiv = document.querySelector(".disDiv")
-
-const kareSayisi = document.querySelector("#kareSayisi")
 const btnOlustur = document.querySelector("#olustur")
-let sayi = 16;
+const container = document.querySelector(".container")
+const btnRenk = document.querySelectorAll(".btnRenk")
 
+let sayi = 16;
 let sayiKutu = 1;
 let sayiContainer = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let kutuGenislik = sayi;
 let kutuUzunluk = sayi;
@@ -36,24 +52,74 @@ kutuOlusturucu();
 
 
 
+
+let input = document.createElement("input")
+let bilgilendirme = document.createElement("h3")
+bilgilendirme.classList.add("animasyon")
+container.appendChild(bilgilendirme)
+let kontrol = false;
+let kareSayisi = null;
+input.classList.add("animasyon")
+input.id = "input"
+input.type = "text"
+input.maxLength = "3"
+container.appendChild(input)
+bilgilendirme.textContent = "Hoş Geldiniz."
+input.placeholder = "Sayı Giriniz."
+
+
+
 btnOlustur.addEventListener("click", function (){
-    console.log(kareSayisi.value);
-    if (kareSayisi.value > 100){
-        uyari.textContent = "Lütfen Daha Küçük Rakam Girin! Sınır:100"
-    }else{
-        sayi = parseInt(kareSayisi.value)
-        kutuGenislik = sayi;
-        kutuUzunluk = sayi;
+                   
+    if(!kontrol){
+
+        kontrol = true
+
         
-        kutuOlusturucu();
+        setTimeout(() => {
+            bilgilendirme.classList.add("animasyonGirdi")
+            input.classList.add("animasyonGirdi")
+        },10)
+
+
+    }else if(kontrol){
+ 
+        kareSayisi = document.querySelector("#input")
+        kontrol = false;
+
+        if (kareSayisi.value > 0 && kareSayisi.value < 101){
+            sayi = parseInt(kareSayisi.value)
+            kutuGenislik = sayi;
+            kutuUzunluk = sayi;
+            kutuOlusturucu();
+        }else{
+            return bilgilendirme.textContent = "Lütfen Geçerli Bir Sayı Giriniz!!"
+        }
+
+    setTimeout(() => {
+        bilgilendirme.classList.remove("animasyonGirdi")
+        input.classList.remove("animasyonGirdi")
+    },10)
+    input.value = "";
     }
-  
+
 })
 
 
 
-disDiv.addEventListener("pointermove", function (a) {    
-    a.target.style.backgroundColor = "red"
+
+
+let renk = "black";
+disDiv.addEventListener("mouseover", function (a) {    
+    
+    a.target.style.backgroundColor = renk
+
+    if(a.target.style.opacity < "0.4"){
+        a.target.style.opacity = "0.4"
+    }else if (a.target.style.opacity < "0.7" ){
+        a.target.style.opacity = "0.7"
+    }else if (a.target.style.opacity < "1"){a.target.style.opacity = "1"}
+
 })
 
 let uyari = document.createElement("h3")
@@ -62,12 +128,34 @@ let gecersizBasis = 1;
 uyari.style = "text-align:center; color:red; font-size:40px; margin: 12px;"
 
 
+
+
+
+
+btnRenk.forEach(function(deger,numara){
+    deger.addEventListener("click", function(){
+        console.log(numara);
+        numara == 0 ? renk = "black":null;
+        numara == 1 ? renk = "red":null;
+        numara == 2 ? renk = "blue":null;
+        numara == 3 ? renk = "green":null
+        numara == 4 ? renk = "white":null;
+        console.log(renk);
+        
+    })    
+})
+
+
+
+
+
+
+
+
 function kutuBulucu(){
     let basla = "";
     return basla = document.querySelector(`.container${sayiContainer} .kutu${sayiKutu}`)
 }
-
-
 body.addEventListener("keydown", function (tus){
 
     if(tus.key == "ArrowUp"){
@@ -89,12 +177,8 @@ body.addEventListener("keydown", function (tus){
         }else{
             gecersizBasis ++;
             return uyari.textContent = `Geçersiz basış: ${gecersizBasis}`
- 
         }
     }
-
-
-
     if (sayiContainer === 0){
         sayiContainer++
         return uyari.textContent = "Daha Fazla Yukarı Gidemessiniz!!"
@@ -108,8 +192,7 @@ body.addEventListener("keydown", function (tus){
         sayiKutu--;
         return uyari.textContent = "Daha Fazla Sağa Gidemezsiniz!!"
     }
-
-
+    // Harekitin dışa çıkmdan durdurulması
     sayiContainer === 0 ? sayiContainer++: null ;
     sayiContainer ===  (kutuUzunluk + 1) ? sayiContainer-- : null;
     sayiKutu === 0 ? sayiKutu++ : null;
